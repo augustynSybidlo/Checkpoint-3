@@ -19,7 +19,7 @@ public class Publisher extends Person {
 
     @Override
     public String toString() {
-        return String.format("Publisher name: %s \n city: %s \n country: %s \n id: %d",
+        return String.format("Publisher name: '%s' \n city: '%s' \n country: '%s' \n id: %d",
                 name, getCity(), getCountry(), getId());
     }
 }
