@@ -1,4 +1,4 @@
 package dao;
 
-public class LibraryDBImpl {
+public class LibraryDBImpl implements LibraryDB {
 }
