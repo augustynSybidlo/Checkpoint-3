@@ -16,7 +16,8 @@ public class LibraryDBImpl implements LibraryDB {
     @Override
     public List<Book> findAllBooks() {
         Connection connection = ConnectionManager.getNewConnection();
-        String url = "SELECT type_book.type FROM books " +
+        String url = "SELECT books.ISBN, books.price, books.publication_year, books.title" +
+                " FROM books " +
                 "INNER JOIN authors ON books.author=authors.author_id " +
                 "INNER JOIN  publishers ON books.publisher=publishers.publisher_id " +
                 "INNER JOIN type_book ON books.type=type_book.type_id " +
@@ -38,12 +39,17 @@ public class LibraryDBImpl implements LibraryDB {
             newStatement = connection.createStatement();
             resultSet = newStatement.executeQuery(url);
             while (resultSet.next()) {
-                int authorId = resultSet.getInt("author_id");
-                String authorCity = resultSet.getString("city");
-                String authorCountry = resultSet.getString("country");
-                String authorName = resultSet.getString("name");
-                String authorSurname = resultSet.getString("surname");
-                int birthdate = resultSet.getInt("birthday");
+                isbn = resultSet.getInt("ISBN");
+                title = resultSet.getString("title");
+                publicationYear = resultSet.getInt("publication_year");
+                price = resultSet.getInt("price");
+                
+//                int authorId = resultSet.getInt("author_id");
+//                String authorCity = resultSet.getString("city");
+//                String authorCountry = resultSet.getString("country");
+//                String authorName = resultSet.getString("name");
+//                String authorSurname = resultSet.getString("surname");
+//                int birthdate = resultSet.getInt("birthday");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
